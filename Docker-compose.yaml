@@ -16,6 +16,7 @@ services:
     build:
       context: backend
       target: development
+      image: awesome/database
     environment:
       MYSQL_HOST: db
     networks:
@@ -28,6 +29,7 @@ services:
     build:
       context: frontend
       target: development
+      image: awesome/webapp
     ports:
       - 3000:3000
     networks:
