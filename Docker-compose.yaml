@@ -1,4 +1,4 @@
-version: "3.7"
+Label version: "3.7"
 services:
   db:
     environment:
@@ -34,11 +34,11 @@ services:
       - react-spring
     depends_on:
       - backend
-volumes:
+ volumes:
   db-data: {}
-secrets:
+  secrets:
   db-password:
     file: db/password.txt
-networks:
+ networks:
   react-spring: {}
   spring-mysql: {}
