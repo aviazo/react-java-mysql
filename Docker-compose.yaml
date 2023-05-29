@@ -1,5 +1,18 @@
 Label version: "3.7"
 services:
+  frontend:
+    image: awesome/webapp
+    build: ./webapp
+
+  backend:
+    image: awesome/database
+    build:
+      context: backend
+      dockerfile: ../backend.Dockerfile
+
+  custom:
+    build: ~/custom
+
   db:
     environment:
       MYSQL_DATABASE: example
@@ -16,7 +29,6 @@ services:
     build:
       context: backend
       target: development
-      image: awesome/database
     environment:
       MYSQL_HOST: db
     networks:
@@ -36,11 +48,11 @@ services:
       - react-spring
     depends_on:
       - backend
- volumes:
-  db-data: {}
-  secrets:
-  db-password:
-    file: db/password.txt
+volumes:
+    db-data: {}
+ secrets:
+    db-password:
+     file: db/password.txt
  networks:
-  react-spring: {}
-  spring-mysql: {}
+    react-spring: {}
+    spring-mysql: {}
