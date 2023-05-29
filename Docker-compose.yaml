@@ -1,3 +1,4 @@
+Label version: "3.7"
 services:
   frontend:
     image: awesome/webapp
