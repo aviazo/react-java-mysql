@@ -1,0 +1,12 @@
+services:
+  frontend:
+    image: awesome/webapp
+    build: ./webapp
+
+  backend:
+    image: awesome/database
+    build:
+      context: backend
+      dockerfile: ../backend.Dockerfile
+ custom:
+   build: ~/custom
