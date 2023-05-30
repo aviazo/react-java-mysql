@@ -43,7 +43,7 @@ pipeline {
                         sh '''pwd'''
                         sh '''docker compose up -d'''
         		sh '''docker compose push'''
-		        sh 'docker tag . 127.0.0.1/slave/react-java-mysql:$BUILD_NUMBER '           
+		        sh 'docker tag 127.0.0.1/slave/react-java-mysql:$BUILD_NUMBER '           
                         echo 'Build Image Completed'                
                 }           
             }        
