@@ -14,8 +14,7 @@ services:
        - mynetwork
     ports:
      - 8080:8080
-  
-
+ 
  db:
     image: mysql:8.0.27
     restart: always
