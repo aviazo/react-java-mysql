@@ -1,43 +1,35 @@
-version: '3.8'
+version: '3'
 services:
-  backend:
-    build: backend
-    restart: always
-    depends_on:
-      - db
-    environment:
-      MYSQL_ROOT_PASSWORD: db-57xsl
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: root
-      MYSQL_PASSWORD: db-57xsl
-    networks:
-       - mynetwork
+  frontend:
+    build: ./frontend
     ports:
-     - 8080:8080
- 
- db:
-    image: mysql:8.0.27
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: db-57xsl
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: root
-      MYSQL_PASSWORD: db-57xsl
-    volumes:
-      - data:/var/lib/mysql
-    ports:
-      - 3306:3306
+      - 3000:3000
     networks:
       - mynetwork
 
-  frontend:
-    build: frontend
+  backend:
+    build: ./backend
     ports:
-      - 3000:3000
+      - 8080:8080
+    environment:
+      - MYSQL_HOST=db
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=db-57xsl
+      - MYSQL_DATABASE=example
+    volumes:
+      - ./db-data:/var/lib/mysql
+    networks:
+      - mynetwork
 
 networks:
   mynetwork:
     driver: bridge
-
-volumes:
-  data:
