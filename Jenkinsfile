@@ -51,7 +51,7 @@ pipeline {
 	     sh '''docker tag mysql mysql:${BUILD_ID}'''
 	     sh '''docker tag react-java-mysql_frontend react-java-mysql-frontend:${BUILD_ID}'''
              sh '''docker tag react-java-mysql_backend react-java-mysql-backend:${BUILD_ID}'''	     
-             sh '''docker login 127.0.0.1:8081'''
+             
              sh '''docker push 127.0.0.1:8083/mysql:${BUILD_ID}'''
              sh '''docker push 127.0.0.1:8083/react-java-mysql_frontend:${BUILD_ID}'''
              sh '''docker push 127.0.0.1:8083/react-java-mysql_backend:${BUILD_ID}'''	     		     
