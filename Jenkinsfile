@@ -50,7 +50,7 @@ pipeline {
       steps {
              withCredentials([usernamePassword(credentialsId: 'nexus_user', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
              sh '''docker tag aviazo/react-java-mysql:${BUILD_ID} 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
-             sh '''docker login 127.0.0.1:8083 -u $nexus_user -p $nexus_pass'''
+             sh '''docker login 127.0.0.1:8083 -u $nexus -p $nexus_pass'''
              sh '''docker push 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
 	          }
  	        }
