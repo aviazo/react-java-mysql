@@ -43,8 +43,7 @@ pipeline {
                         sh '''pwd'''
                         sh '''docker compose up -d'''
         		sh '''docker compose push'''
-		        sh 'docker tag 127.0.0.1/slave/react-java-mysql:$BUILD_NUMBER '           
-                        echo 'Build Image Completed'                
+		        
                 }           
             }        
         }  
@@ -52,10 +51,15 @@ pipeline {
       steps {
              withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
              sh '''docker tag aviazo/react-java-mysql:${BUILD_ID} 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
+	     sh '''docker tag aviazo/react-java-mysql:${BUILD_ID} 127.0.0.1:8083/react-java-mysql_frontend:${BUILD_ID}'''
+             sh '''docker tag aviazo/react-java-mysql:${BUILD_ID} 127.0.0.1:8083/react-java-mysql_backend:${BUILD_ID}'''	     
              sh '''docker login 127.0.0.1:8083 -u $nexus -p $nexus_pass'''
              sh '''docker push 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
-	          }
- 	        }
+	     sh '''docker push 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
+             sh '''docker push 127.0.0.1:8083/react-java-mysql_frontend:${BUILD_ID}'''
+             sh '''docker push 127.0.0.1:8083/react-java-mysql_backend:${BUILD_ID}'''	     		     
+	       }
+ 	    }
        	}
 
    /* stage('Cleanup') {
