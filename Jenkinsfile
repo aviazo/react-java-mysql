@@ -27,9 +27,16 @@ pipeline {
         }
 	  
     stage('Build Docker Image') {         
-      steps {                
-	         sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
-             echo 'Build Image Completed'                
+      steps { 
+             script {
+
+                        sh '''cp /slave/workspace/react-java-mysql/frontend/package.json /slave/workspace/react-java-mysql/package.json'''
+                        sh '''pwd'''
+                        sh '''cp /slave/workspace/react-java-mysql/frontend/public/index.html /slave/workspace/react-java-mysql/public/index.html'''
+                        sh '''npm install'''
+                        // Build the Docker image
+                        sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
+                        echo 'Build Image Completed'                
             }           
        }  
     stage('Build and Push To Nexus Image') {
