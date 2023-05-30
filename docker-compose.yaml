@@ -13,10 +13,7 @@ services:
     networks:
       - spring-mysql
   backend:
-    image: "${docker}:8082/backend:${NOW}"
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: ./backend
       #target: development
     environment:
       MYSQL_HOST: db
@@ -28,9 +25,7 @@ services:
     restart: on-failure:5
   frontend:
     image: "${docker}:8082/frontend:${NOW}"
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    build: ./frontend
       #target: development
     ports:
       - 3000:3000
