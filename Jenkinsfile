@@ -37,8 +37,9 @@ pipeline {
                         // Build the Docker image
                         sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
                         echo 'Build Image Completed'                
-            }           
-       }  
+                }           
+            }        
+        }  
     stage('Build and Push To Nexus Image') {
       steps {
              withCredentials([usernamePassword(credentialsId: 'nexus_user', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
@@ -55,5 +56,5 @@ pipeline {
             }
         }
     }
- }
+ 
 }
