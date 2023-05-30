@@ -27,9 +27,6 @@ services:
       - MYSQL_DATABASE=example
     volumes:
       - ./db-data:/var/lib/mysql
-secrets:
-  db-password:
-    file: db/password.txt
 networks:
   react-spring: {}
   spring-mysql: {} 
