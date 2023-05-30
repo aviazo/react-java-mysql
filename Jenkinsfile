@@ -2,18 +2,12 @@ pipeline {
   agent{      
     node { label 'docker'}     
   }  
-  environment {     
-    DOCKERHUB_CREDENTIALS= credentials('docker_hub-aviazo')     
-  } 
-
-  triggers {
-            pollSCM '* * * * *'
-           }   
+  
   stages {  
 
     stage("Git Checkout"){           
       steps{                
-	     checkout([$class: 'GitSCM', branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-ssh', url: 'https://github.com/aviazo/react-java-mysql.git']]])           
+	     checkout([$class: 'GitSCM', branches: [[name: '*/Dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-ssh', url: 'https://github.com/aviazo/react-java-mysql.git']]])           
            }        
         }
    
