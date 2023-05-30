@@ -13,7 +13,7 @@ pipeline {
 
     stage("Git Checkout"){           
       steps{                
-	          git branch: 'dev', url: 'https://github.com/aviazo/react-java-mysql.git'             
+	          git branch: '*/dev', url: 'https://github.com/aviazo/react-java-mysql.git'             
 	          echo 'Git Checkout Completed'            
            }        
         }
