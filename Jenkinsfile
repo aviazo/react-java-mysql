@@ -41,7 +41,9 @@ pipeline {
                         sh '''mkdir -p /slave/workspace/react-java-mysql/public/ && cp -r /slave/workspace/react-java-mysql/frontend/public/index.html /slave/workspace/react-java-mysql/public/index.html'''
                         sh '''npm install'''
                         sh '''pwd'''
-                        //sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
+                        sh '''docker compose up -d'''
+        		sh '''docker compose push'''
+		        sh 'docker -t 127.0.0.1/slave/react-java-mysql:$BUILD_NUMBER .'           
                         echo 'Build Image Completed'                
                 }           
             }        
