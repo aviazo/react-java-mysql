@@ -38,7 +38,7 @@ pipeline {
 
                         sh '''cp /slave/workspace/react-java-mysql/frontend/package.json /slave/workspace/react-java-mysql/package.json'''
                         sh '''pwd'''
-                        sh '''cp /slave/workspace/react-java-mysql/frontend/public/index.html /slave/workspace/react-java-mysql/public/index.html'''
+                        sh '''cp /slave/workspace/react-java-mysql/frontend/public/index.html /slave/workspace/react-java-mysql/index.html'''
                         sh '''npm install'''
                         // Build the Docker image
                         sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
