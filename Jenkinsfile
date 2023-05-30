@@ -27,13 +27,13 @@ pipeline {
             }
         }
 	  
-     stage('Build Docker Image') {         
-      steps{                
-	    sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
-            echo 'Build Image Completed'                
+        stage('Build Docker Image') {         
+           steps {                
+	       sh 'sudo docker build -t aviazo/react-java-mysql:$BUILD_NUMBER .'           
+               echo 'Build Image Completed'                
            }           
     }  
-    stage('Build and Push To Nexus Image') {
+        stage('Build and Push To Nexus Image') {
             steps {
                     withCredentials([usernamePassword(credentialsId: 'nexus_user', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
                         sh '''docker tag aviazo/react-java-mysql:${BUILD_ID} 127.0.0.1:8083/react-java-mysql:${BUILD_ID}'''
@@ -44,8 +44,8 @@ pipeline {
         	}
 
            stage('Cleanup') {
-            steps {
-               sh 'docker-compose down'
+              steps {
+                sh 'docker-compose down'
             }
         }
     }
