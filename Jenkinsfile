@@ -41,8 +41,8 @@ pipeline {
                         sh '''mkdir -p /slave/workspace/react-java-mysql/public/ && cp -r /slave/workspace/react-java-mysql/frontend/public/index.html /slave/workspace/react-java-mysql/public/index.html'''
                         sh '''npm install'''
                         sh '''pwd'''
-                        sh '''docker compose up -d'''
-        		sh '''docker compose push'''
+                        //sh '''docker compose up -d'''
+        		//sh '''docker compose push'''
 		        
                 }           
             }        
