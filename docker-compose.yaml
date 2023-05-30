@@ -27,6 +27,3 @@ services:
       - MYSQL_DATABASE=example
     volumes:
       - ./db-data:/var/lib/mysql
-networks:
-  react-spring: {}
-  spring-mysql: {} 
