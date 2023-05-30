@@ -24,7 +24,6 @@ services:
       - db
     restart: on-failure:5
   frontend:
-    image: "${docker}:8082/frontend:${NOW}"
     build: ./frontend
       #target: development
     ports:
