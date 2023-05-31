@@ -60,11 +60,6 @@ pipeline {
  	    }
        	}
 
-      stage('Cleanup') {
-        steps {
-             sh '''cleanWs notFailBuild: true'''
-            }
-        }
-    }
- 
+     
+   }
 }
