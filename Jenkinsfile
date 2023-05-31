@@ -49,9 +49,9 @@ pipeline {
       steps {
              withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
 	     sh '''docker login 127.0.0.1:8082'''
-	     sh '''docker tag mysql:${BUILD_ID} 127.0.0.1:8082/mysql:${BUILD_ID}'''
-	     sh '''docker tag react-java-mysql_frontend:${BUILD_ID} 127.0.0.1:8082/react-java-mysql-frontend:${BUILD_ID}'''
-             sh '''docker tag react-java-mysql_backend:${BUILD_ID} 127.0.0.1:8082/react-java-mysql-backend:${BUILD_ID}'''	     
+	     sh '''docker tag mysql 127.0.0.1:8082/mysql:${BUILD_ID}'''
+	     sh '''docker tag react-java-mysql_frontend 127.0.0.1:8082/react-java-mysql-frontend:${BUILD_ID}'''
+             sh '''docker tag react-java-mysql_backend 127.0.0.1:8082/react-java-mysql-backend:${BUILD_ID}'''	     
              
              sh '''docker push 127.0.0.1:8082/mysql:${BUILD_ID}'''
              sh '''docker push 127.0.0.1:8082/react-java-mysql_frontend:${BUILD_ID}'''
