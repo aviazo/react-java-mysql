@@ -48,9 +48,9 @@ pipeline {
     stage('Build and Push To Nexus Image') {
       steps {
              withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_pass', usernameVariable: 'nexus_user')]) {
-	     sh '''docker tag mysql mysql:${BUILD_ID}'''
-	     sh '''docker tag react-java-mysql_frontend react-java-mysql-frontend:${BUILD_ID}'''
-             sh '''docker tag react-java-mysql_backend react-java-mysql-backend:${BUILD_ID}'''	     
+	     sh '''docker tag mysql 127.0.0.1:8083/mysql:${BUILD_ID}'''
+	     sh '''docker tag react-java-mysql_frontend 127.0.0.1:8083/react-java-mysql-frontend:${BUILD_ID}'''
+             sh '''docker tag react-java-mysql_backend 127.0.0.1:8083/react-java-mysql-backend:${BUILD_ID}'''	     
              
              sh '''docker push 127.0.0.1:8083/mysql:${BUILD_ID}'''
              sh '''docker push 127.0.0.1:8083/react-java-mysql_frontend:${BUILD_ID}'''
